@@ -3,9 +3,7 @@
 
 name: Node.js Package
 
-on:
-  release:
-    types: [created]
+on: ['pull_request']
 
 jobs:
   build:
@@ -18,6 +16,9 @@ jobs:
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
+      - uses: borales/actions-yarn@v2.0.0
+          with:
+            cmd: test
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build
