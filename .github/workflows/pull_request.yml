@@ -28,4 +28,11 @@ jobs:
       - name: upload build artifact
         uses: actions/upload-artifact@v2
         with:
-          path: /
+          path: |
+            ./
+            !yarn.lock
+            !.eslintrc.json
+            !.gitignore
+            !node_modules/
+            !.github/
+            !.idea/
