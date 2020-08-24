@@ -28,4 +28,4 @@ jobs:
       - name: upload build artifact
         uses: actions/upload-artifact@v2
         with:
-          path: dist
+          path: /
