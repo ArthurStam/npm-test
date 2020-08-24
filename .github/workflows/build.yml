@@ -15,13 +15,13 @@ jobs:
           node-version: 12
       - name: yarn install
         uses: borales/actions-yarn@v2.0.0
-          with:
-            cmd: install
+        with:
+          cmd: install
       - name: yarn test
         uses: borales/actions-yarn@v2.0.0
-          with:
-            cmd: test
+        with:
+          cmd: test
       - name: yarn build
         uses: borales/actions-yarn@v2.0.0
-          with:
-            cmd: build
+        with:
+          cmd: build
