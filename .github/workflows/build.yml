@@ -25,3 +25,7 @@ jobs:
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build
+      - name: upload build artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: dist
