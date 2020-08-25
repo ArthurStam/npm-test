@@ -28,10 +28,4 @@ jobs:
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v4
-        with:
-          message: "v${{ github.event.inputs.version }}"
-          tag: "v${{ github.event.inputs.version }}"
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
