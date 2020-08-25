@@ -25,7 +25,8 @@ jobs:
       - run: yarn test
       - run: yarn build
       - run: yarn version --new-version ${{ github.event.inputs.version }} ${{ github.event.inputs.tag }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
