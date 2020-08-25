@@ -9,11 +9,20 @@
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
     "eslint": "^7.7.0",
-    "eslint-plugin-react": "^7.20.6"
+    "eslint-plugin-react": "^7.20.6",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-styleguidist": "^11.0.8",
+    "webpack": "^4.44.1"
   },
   "scripts": {
     "test": "eslint src/",
-    "build": "babel src/index.js --out-file dist/index.js"
+    "build": "babel src --out-dir dist",
+    "doc:dev": "styleguidist server",
+    "doc:build": "styleguidist build"
   }
 }

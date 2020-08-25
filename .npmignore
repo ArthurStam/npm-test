@@ -1,3 +1,9 @@
 src/
+styleguide/
 .idea/
+.github/
 .gitignore
+.yarn-error.log
+.eslintrc.json
+.babelrc.json
+styleguide.config.js
