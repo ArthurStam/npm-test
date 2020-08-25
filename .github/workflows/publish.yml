@@ -25,8 +25,8 @@ jobs:
       - run: yarn test
       - run: yarn build
       - uses: oleksiyrudenko/gha-git-credentials@v1
-          with:
-            token: '${{ secrets.GITHUB_TOKEN }}'
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
       - run: yarn version --new-version ${{ github.event.inputs.version }} ${{ github.event.inputs.tag }}
       - run: yarn publish
         env:
