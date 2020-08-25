@@ -27,7 +27,11 @@ jobs:
       - uses: oleksiyrudenko/gha-git-credentials@v1
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
-      - run: yarn version --new-version ${{ github.event.inputs.version }} ${{ github.event.inputs.tag }}
-      - run: yarn publish
+      - run: yarn version --new-version ${{ github.event.inputs.version }}
+      - run: yarn publish --non-interactive --tag ${{ github.event.inputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
