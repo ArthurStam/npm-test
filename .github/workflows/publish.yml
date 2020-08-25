@@ -45,3 +45,5 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.NPM_TEST_DOC_SECRET }}
         with:
           source-directory: 'styleguide'
+          destination-github-username: 'ArthurStam'
+          destination-repository-name: 'npm-test-doc'
