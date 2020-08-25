@@ -3,7 +3,14 @@
 
 name: 'Pull request: test and build'
 
-on: ['pull_request']
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'version'
+        required: true
+      tag:
+        description: 'tag'
 
 jobs:
   build:
@@ -13,10 +20,16 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-          registry-url: 'https://npm.pkg.github.com'
-      - run: yarn
+          registry-url: 'https://registry.npmjs.org'
+      - run: echo "$(cat ~/.npmrc)"
+      - run: yarn install
       - run: yarn test
       - run: yarn build
-      - run: npm publish
+      - run: yarn version --new-version ${{ github.events.inputs.version }} ${{ github.events.inputs.tag }}
+      - run: yarn publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: "v${{ github.events.inputs.version }}"
