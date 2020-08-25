@@ -29,6 +29,11 @@ jobs:
           token: '${{ secrets.GITHUB_TOKEN }}'
       - run: yarn version --new-version ${{ github.event.inputs.version }}
       - run: yarn publish --non-interactive --tag ${{ github.event.inputs.tag }}
+        if: ${{ github.event.inputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn publish --non-interactive
+        if: ${{ !github.event.inputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: push changes
