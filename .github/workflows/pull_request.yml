@@ -3,7 +3,14 @@
 
 name: 'Pull request: test and build'
 
-on: ['pull_request']
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'version'
+        required: true
+      tag:
+        description: 'tag'
 
 jobs:
   build:
@@ -18,6 +25,11 @@ jobs:
       - run: yarn install
       - run: yarn test
       - run: yarn build
+      - run: yarn version --new-version ${{ github.events.inputs.version }} ${{ github.events.inputs.tag }}
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          message: "v${{ github.events.inputs.version }}"
