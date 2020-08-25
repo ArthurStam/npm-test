@@ -21,11 +21,10 @@ jobs:
         with:
           node-version: 12
           registry-url: 'https://registry.npmjs.org'
-      - run: echo "$(cat ~/.npmrc)"
       - run: yarn install
       - run: yarn test
       - run: yarn build
-      - run: yarn version --new-version ${{ github.events.inputs.version }} ${{ github.events.inputs.tag }}
+      - run: yarn version --new-version "${{ github.events.inputs.version }}" "${{ github.events.inputs.tag }}"
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
