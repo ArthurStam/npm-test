@@ -35,7 +35,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
       - run: yarn doc:build
-      - run: mkdir styleguide/${{ github.events.inputs.version }} && cp styleguide/index.html styleguide/${{ github.events.inputs.version }} && cp -R styleguide/build styleguide/${{ github.events.inputs.version }}/build
+      - run: mkdir styleguide/${{ github.event.inputs.version }} && cp styleguide/index.html styleguide/${{ github.event.inputs.version }} && cp -R styleguide/build styleguide/${{ github.event.inputs.version }}/build
       - name: push doc
         uses: cpina/github-action-push-to-another-repository@master
         env:
