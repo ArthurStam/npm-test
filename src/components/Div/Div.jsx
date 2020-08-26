@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 Div.propTypes = {
-    mode: PropTypes.string
+    mode: PropTypes.string,
+    hasPaddings: PropTypes.bool
 }
 
 function Div({ children, mode, ...restProps }) {
