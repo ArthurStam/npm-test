@@ -22,6 +22,7 @@
   "scripts": {
     "test": "eslint src/",
     "build": "babel src --out-dir dist",
+    "prepare": "yarn build",
     "doc:dev": "styleguidist server",
     "doc:build": "styleguidist build"
   }

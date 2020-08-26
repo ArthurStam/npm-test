@@ -16,8 +16,3 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test
       - run: yarn build
-      - run: yarn pack --filename ${{ github.sha }}.tgz
-      - uses: actions/upload-artifact@v2
-        with:
-          name: package
-          path: ${{ github.sha }}.tgz
