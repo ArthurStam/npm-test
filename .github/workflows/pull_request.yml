@@ -18,7 +18,8 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn test
       - run: yarn build
-      - run: yarn version --no-git-tag-version --no-commit-hooks --prerelease --preid ${{ github.sha }}
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn pack --filename ${{ github.sha }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: package
+          path: ${{ github.sha }}.tgz
