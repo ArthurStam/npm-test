@@ -1,7 +1,7 @@
-const { argv } = require('yargs')
+const { argv } = require('yargs');
 
 module.exports = {
-  styleguideDir: argv.version,
+  styleguideDir: argv.ver,
   webpackConfig: {
     module: {
       rules: [
