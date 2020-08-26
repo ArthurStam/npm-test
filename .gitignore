@@ -2,3 +2,4 @@ dist/
 node_modules/
 styleguide/
 yarn-error.log
+.DS_Store

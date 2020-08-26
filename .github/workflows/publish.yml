@@ -9,8 +9,6 @@ on:
       version:
         description: 'version'
         required: true
-      tag:
-        description: 'tag'
 
 jobs:
   publish:
@@ -28,12 +26,7 @@ jobs:
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
       - run: yarn version --new-version ${{ github.event.inputs.version }}
-      - run: yarn publish --non-interactive --tag ${{ github.event.inputs.tag }}
-        if: ${{ github.event.inputs.tag }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: yarn publish --non-interactive
-        if: ${{ !github.event.inputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: push changes
@@ -41,10 +34,9 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
-      - run: yarn doc:build --ver ${{ github.event.inputs.version }}
-        if: ${{ !github.event.inputs.tag }}
+      - run: yarn doc:build
+      - run: mkdir styleguide/${{ github.events.inputs.version }} && cp styleguide/index.html styleguide/${{ github.events.inputs.version }} && cp -R styleguide/build styleguide/${{ github.events.inputs.version }}/build
       - name: push doc
-        if: ${{ !github.event.inputs.tag }}
         uses: cpina/github-action-push-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.NPM_TEST_DOC_SECRET }}
