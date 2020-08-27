@@ -1,6 +1,6 @@
 {
   "name": "astambultsian-npm-test",
-  "version": "2.8.0",
+  "version": "2.9.0",
   "main": "dist/index.js",
   "repository": "git@github.com:ArthurStam/npm-test.git",
   "author": "bumbledos@gmail.com",
