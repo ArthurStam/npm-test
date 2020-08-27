@@ -50,7 +50,7 @@ jobs:
           branch: ${{ github.ref }}
 
       - name: Creating doc
-      - run: |
+        run: |
           yarn doc:build
           mkdir ${{ github.event.inputs.version }}
           cp -R styleguide/* ${{ github.event.inputs.version }}
@@ -58,7 +58,7 @@ jobs:
         if: ${{ !github.event.inputs.tag }}
 
       - name: Creating doc
-      - run: |
+        run: |
           yarn doc:build --dist styleguide/${{ github.event.inputs.version }}
         if: ${{ github.event.inputs.tag }}
 
