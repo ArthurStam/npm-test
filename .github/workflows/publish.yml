@@ -62,11 +62,9 @@ jobs:
           yarn doc:build --dist styleguide/${{ github.event.inputs.version }}
         if: ${{ github.event.inputs.tag }}
 
-      - name: Pushing doc
-        uses: ArthurStam/github-action-push-to-another-repository@master
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.NPM_TEST_DOC_SECRET }}
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.9
         with:
-          source-directory: 'styleguide'
-          destination-github-username: 'ArthurStam'
-          destination-repository-name: 'npm-test-doc'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: styleguide # The folder the action should deploy.
