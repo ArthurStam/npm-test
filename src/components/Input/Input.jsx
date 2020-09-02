@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 Input.propTypes = {
     mode: PropTypes.string,
-    status: PropTypes.string,
+    state: PropTypes.string,
 }
 
 function Input({ children, mode, ...restProps }) {
