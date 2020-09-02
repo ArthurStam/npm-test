@@ -23,23 +23,23 @@ jobs:
           node-version: 12
           registry-url: 'https://registry.npmjs.org'
 
-      - run: yarn install
+      - run: yarn install --frozen-lockfile --ignore-scripts
 
       - run: yarn test
-
-      - run: yarn build
 
       - uses: oleksiyrudenko/gha-git-credentials@v1
         with:
           token: '${{ secrets.GITHUB_TOKEN }}'
 
       - run: yarn version --new-version ${{ github.event.inputs.version }}
-        if: ${{ !github.event.inputs.tag }}
 
-      - run: yarn version --new-version ${{ github.event.inputs.version }} --tag ${{ github.event.inputs.tag }}
+      - run: yarn publish --non-interactive --tag ${{ github.event.inputs.tag }}
         if: ${{ github.event.inputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: yarn publish --non-interactive
+        if: ${{ !github.event.inputs.tag }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
