@@ -28,9 +28,9 @@ jobs:
       - run: yarn test
 
       - name: Set Git credentials
-          run: |
-            git config --local user.email "bumbledos@gmail.com"
-            git config --local user.name "ArthurStam"
+        run: |
+          git config --local user.email "bumbledos@gmail.com"
+          git config --local user.name "ArthurStam"
 
       - run: yarn version --new-version ${{ github.event.inputs.version }}
 
